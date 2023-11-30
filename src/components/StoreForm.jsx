@@ -6,6 +6,7 @@ import { useStoreData } from "../contexts/StoreContext";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { IconButton } from "@mui/material";
 
+// yup validation schema
 const storeSchema = Yup.object().shape({
   storeName: Yup.string().required("Please enter a store name"),
   country: Yup.string().required("Please enter a country"),
@@ -23,7 +24,7 @@ const storeSchema = Yup.object().shape({
 });
 
 const StoreForm = forwardRef((props, ref) => {
-  const { handleClose, store, mode } = props;
+  const { handleClose, store } = props;
   const { rows, setRows } = useStoreData();
 
   // if edit modal open, set initial values as store values
@@ -45,15 +46,9 @@ const StoreForm = forwardRef((props, ref) => {
   const fieldClassName =
     "w-full p-2 rounded border-light focus:ring-2 md:col-span-3";
   const errorClassName = "text-red-500 text-xs mt-1";
-  let outherDivClassName = "max-w-full overflow-x-auto border rounded bg-beyaz";
-
-  // if mode is "modal", make outher div className to medium screen
-  if (mode === "modal") {
-    outherDivClassName = "rounded bg-beyaz";
-  }
 
   return (
-    <div className={outherDivClassName}>
+    <div className="max-w-full overflow-x-auto border rounded bg-beyaz">
       <div className="m-6 font-medium text-xl text-opacity-80">
         <IconButton>
           <KeyboardArrowDownIcon />

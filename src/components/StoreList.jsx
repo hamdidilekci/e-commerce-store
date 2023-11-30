@@ -24,11 +24,13 @@ function StoreList() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [createStoreModalOpen, setCreateStoreModalOpen] = useState(false);
 
+  // prop to set page model
   const [paginationModel, setPaginationModel] = useState({
     page: 0,
     pageSize: 3,
   });
 
+  // table footer description
   const firstElementIndex = paginationModel.page * paginationModel.pageSize;
   const lastElementIndex =
     Math.min(
@@ -36,6 +38,7 @@ function StoreList() {
       rows.length
     ) - 1;
 
+  // api for data grid
   const apiRef = useGridApiRef();
 
   const handleNextPage = () => {
@@ -81,6 +84,7 @@ function StoreList() {
     setCreateStoreModalOpen(false);
   };
 
+  // table columns
   const columns = [
     {
       field: "storeName",
@@ -123,8 +127,7 @@ function StoreList() {
       field: "description",
       headerName: "Description",
       flex: 0.5,
-      minWidth: 200,
-      headerAlign: "center",
+      minWidth: 150,
     },
     {
       field: "actions",
@@ -157,7 +160,6 @@ function StoreList() {
               open={editModalOpen}
               handleClose={handleCloseEditModal}
               store={selectedStoreToEdit}
-              mode="modal"
             />
           </div>
         );
@@ -165,6 +167,7 @@ function StoreList() {
     },
   ];
 
+  // no rows overlay
   const CustomNoRowsOverlay = () => {
     return (
       <div className="flex items-center justify-center h-full w-full">
@@ -173,6 +176,7 @@ function StoreList() {
     );
   };
 
+  // table top toolbar customization
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
@@ -181,10 +185,9 @@ function StoreList() {
     );
   }
 
-  // create data table for storeForm's values
   return (
     <>
-      {/* header of table */}
+      {/* header */}
       <div className="mt-24 mb-6 flex items-center justify-between">
         <div>
           <span className="font-medium text-xl text-opacity-80">Stores</span>
@@ -208,9 +211,9 @@ function StoreList() {
           open={createStoreModalOpen}
           handleClose={handleCloseCreateStoreModal}
           store={""}
-          mode="modal"
         />
       </div>
+      {/* table */}
       <div className="max-w-full overflow-x-auto bg-beyaz">
         <DataGrid
           autoHeight={true}
@@ -232,7 +235,7 @@ function StoreList() {
           apiRef={apiRef}
           hideFooter={true}
         />
-
+        {/* Footer */}
         <div className="flex items-center justify-between bg-acikGri pt-4">
           {rows.length !== 0 ? (
             <div className="text-sm">
@@ -247,7 +250,6 @@ function StoreList() {
             <p className="text-sm">No Results</p>
           )}
           <div className="flex gap-x-6">
-            {/* Add your "Previous" and "Next" buttons here */}
             <button
               type="button"
               className="rounded-md bg-beyaz px-3 py-2 text-xs font-semibold text-gri shadow-sm  hover:text-yesil focus-visible:outline"
