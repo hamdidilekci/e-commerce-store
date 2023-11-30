@@ -4,10 +4,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#3d7bf1",
-        secondary: "#313131",
-        brandColor: "#ec1b24",
-        primarydark: "#2b4ec6",
+        mavi: "#263fa3",
+        gri: "#374151",
+        kirmizi: "#ef4444",
+        yesil: "#15803d",
+        beyaz: "#f9fafb",
+        civit: "#4f46e5",
+        sari: "#fde047",
+        acikGri: "#e2e8f0",
       },
     },
   },
